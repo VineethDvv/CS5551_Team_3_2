@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login and Registration Form</title>
+    <link rel="stylesheet " href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="google-signin-client_id" content="118216935024-qdoji6n6mp6bdisu6scksiifj77qmb7v.apps.googleusercontent.com">
+</head>
+<body background="image3.jpg"     style="background-repeat: no-repeat; background-size:cover;">
+<h1 align="center" style="color:white;">Knowledge Discovery</h1>
+    <script>
+        function onSignIn(googleUser)
+        {
+            location.replace('homePage.html');
+        }
+        function login() {
+            if (document.getElementById('username').value.length > 0 && document.getElementById('password').value.length > 0) {
+                if (document.getElementById('username').value == localStorage.getItem('UserName')
+                    && document.getElementById('password').value == localStorage.getItem('Password')) {
+                    location.replace('homePage.html');
+                }
+                else {
+                    alert('Please enter correct details !');
+                }
+            }
+                else
+                    {
+                        alert('Dear user, you have missed entering few details');
+                    }
+                }
+    </script>
+<div>
+    <div class = "login-page">
+        <div class ="form">
+            <form class ="register-form">
+                <input type ="text" id="username" placeholder ="username"/><br>
+                <input type ="password" id="password" placeholder ="password"/><br>
+                <a class ="message" href="Registration.html">not yet Registered? Register</a><br>
+            </form>
+            <button onclick="login()">Login</button><br>
+            <br>
+            else Signin with<br>
+            <div align="center" class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Login and Registration Form</title>
+    <link rel="stylesheet " href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="google-signin-client_id" content="118216935024-qdoji6n6mp6bdisu6scksiifj77qmb7v.apps.googleusercontent.com">
+
+    <script>
+        function registration()
+        {
+
+            if(document.getElementById('userreg').value.length>0 && document.getElementById('passwordreg').value.length>0 && document.getElementById('emailreg').value.length>0) {
+
+                localStorage.setItem('UserName', document.getElementById('userreg').value);
+                localStorage.setItem('Password', document.getElementById('passwordreg').value);
+                alert('data inserted sucessfully');
+
+
+            }
+
+
+           else
+            {
+                alert('Please fill all the given details!');
+            }
+        }
+
+    </script>
+
+</head>
+<body class="background">
+<script>
+    function onSignIn(googleUser)
+    {
+        alert("entered");
+        //window.location.href='http://localhost:63343/Lab%20Assignment%201/homePage.html?_ijt=p8piv4s4nib3n5p3g0kfsk2u7c';
+        location.replace('homePage.html');
+    }
+</script>
+<div>
+    <div class = "login-page">
+        <div class ="form">
+            <form class ="register-form">
+                <input type ="text" id="userreg" placeholder ="username"/><br>
+                <input type ="password" id="passwordreg" placeholder ="password"/><br>
+                <input type="text" id="emailreg" placeholder ="email id"/><br>
+                <a class ="message" href="Login.html">Already Registered! Login</a><br>
+                <button onclick="registration()">Register</button>
+
+                else Signin with
+            </form>
+
+            <br>
+
+
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+

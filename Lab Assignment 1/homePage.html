@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login and Registration Form</title>
+    <link rel="stylesheet " href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="Weather_Response.js"></script>
+
+
+    <script>
+    angular.module('knowledge', [])
+    .controller('ctrl', function($scope, $http) {
+    $scope.get = function () {
+
+    $http.get("https://kgsearch.googleapis.com/v1/entities:search?query="+$scope.statecode +"&key=%20AIzaSyDMEBecZDKiws3eLRFIi1IO1E6Vm9s4Xj8%20&limit=1&indent=True").success(
+        function(knowledge) {
+    console.log(knowledge);
+
+        console.log(knowledge.itemListElement[0].result.name);
+        $scope.details = knowledge.itemListElement[0].result.name;
+        $scope.data = knowledge.itemListElement["0"].result.detailedDescription.articleBody;
+        $scope.decription = knowledge.itemListElement["0"].result.description;$scope.url = knowledge.itemListElement["0"].result.detailedDescription.url;
+        $scope.audioSource = 'https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=b15e9ee3-239d-44ae-bb09-4604fdd730ec&password=uouKDeIwA3c5&text='+ $scope.statecode;
+
+            document.getElementById("Audio").innerHTML= "<audio controls='' autoplay='' name='media'><source src='"+$scope.audioSource+"' type='audio/ogg'></audio>";
+            <!-- Audio file that will automatically start playing after the button is clicked -->
+
+            console.log($scope.audio);
+    });
+    }
+    });
+
+    </script>
+</head>
+<body background="image1.jpg"     style="background-repeat: no-repeat; background-size:cover;" style="width: 100%;" style="height: 100%;">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Welcome to the Knowledge Discovery Domain</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="http://localhost:63343/Lab%20Assignment%201/contactUs.html?_ijt=pr2h3o92gg7hv220p0qp1c22t3">Contact Us</a></li>
+            <li><a href="http://localhost:63343/Lab%20Assignment%201/aboutUs.html?_ijt=jlks44l17bms98bigfrlm6eung">About Us</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li style="float:right"><a class="active" href="Login.html">Logout</a></li>
+
+
+        </ul>
+
+    </div>
+</nav>
+
+<H1 align="center" style="color:white" >Welcome to Home Page</H1><br>
+
+<div  ng-app = "knowledge" ng-controller = "ctrl">
+    Text:<input type = "text" name ="State code" ng-model = "statecode">
+    <button id="submit" ng-click ="get()"> Submit </button>
+
+    <div ng-model="details">
+        <div align="center" id="Audio"></div>
+
+        {{details}}<br>
+        {{decription}}<br>
+        {{data}}<br>
+       <a>{{url}}</a>
+       </div>
+
+</div>
+<br>
+</body>
+</html>
